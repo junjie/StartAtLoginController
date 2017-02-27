@@ -61,7 +61,7 @@
         // this method call initializes _enabled to the correct value as a side effect.
         [self startAtLogin];
 #if !defined(NDEBUG)
-        NSLog(@"Launcher '%@' %@ configured to start at login",
+        DDLogInfo(@"Launcher '%@' %@ configured to start at login",
               self.identifier, (_enabled ? @"is" : @"is not"));
 #endif
     }
@@ -127,7 +127,7 @@
     [self willChangeValueForKey:@"startAtLogin"];
     
     if (!SMLoginItemSetEnabled((__bridge CFStringRef)_identifier, (flag) ? true : false)) {
-        NSLog(@"SMLoginItemSetEnabled failed!");
+        DDLogInfo(@"SMLoginItemSetEnabled failed!");
         
         [self willChangeValueForKey:@"enabled"];
         _enabled = NO;
